@@ -71,6 +71,12 @@ sesión de hoy o algo similar lo primero siempre es seguir el proceso como se de
 
 **Commit / push:** Pending — student needs to copy files from `/mnt/host` to `~/linux-devops-labs` and commit + push.
 
+**Concept summaries for recap:**
+- **FHS (Filesystem Hierarchy Standard):** A "contract" that says every Linux distro organizes files the same way. `/etc` = config, `/var` = variable data (logs, caches), `/usr` = software/binaries, `/home` = user directories, `/tmp` = temporary files, `/opt` = third-party software. This exists so any Linux admin can sit at any distro and know where to find things.
+- **Absolute vs relative paths:** Absolute starts from `/` (the root). Relative starts from where you are. `cd /home` is absolute. `cd Documents` is relative. `..` means "go up one level."
+- **Symlinks (soft pointers in the filesystem):** Debian uses symlinks to consolidate old directories: `bin -> usr/bin`, `lib -> usr/lib`, `sbin -> usr/sbin`. These are not copies — they are pointers to another location. The `ls -la` output shows `->` to indicate a symlink.
+- **`ls -la` breakdown:** `-l` = long format (permissions, owner, size, date), `-a` = show hidden files (names starting with `.`). Output columns: type+permissions, link count, owner, group, size, date, name.
+
 ---
 
 ## 2026-09-07 — Session 09 (Lab 04 COMPLETE — Files, Inodes & Links)
@@ -123,9 +129,15 @@ sesión de hoy o algo similar lo primero siempre es seguir el proceso como se de
 
 **Commit / push:** Pending — student needs to copy files from `/mnt/host` to `~/linux-devops-labs` and commit + push.
 
----
+**Concept summaries for recap:**
+- **What a file really is:** A file = inode (metadata: owner, permissions, size, timestamps, data location on disk) + directory entry (the name). The inode number is the true identity. The name is just a label in the directory.
+- **Hard link:** Another name for the same inode. Both names point to the same data. Link count tracks how many names exist. If you delete one name, the data survives as long as link count > 0. Created with `ln archivo.txt hard-link.txt`.
+- **Soft link (symbolic link):** A separate file with its own inode that contains a path to another file. Shows as `l` type in `ls -l`. If the original is deleted, the soft link breaks (becomes a "dangling link"). Created with `ln -s archivo.txt soft-link.txt`.
+- **Inode fields:** inode number, link count, size, permissions (rwx for owner/group/others), uid/gid, access time (last read), modify time (last content change), change time (last inode change), birth time (creation).
+- **Real-world use cases:** Soft links → shortcuts to long paths, switching between software versions (Python 3.11 vs 3.12), system consolidation (`bin -> usr/bin`). Hard links → space-efficient backups (no copy needed), Git internals (avoids duplicating files between versions).
+- **Key commands:** `ls -li` (see inodes + link count), `ln` (create hard link), `ln -s` (create soft link), `stat` (see full inode details), `file` (identify file type).
 
-## How to Write an Entry
+---
 
 Append every entry at the **top** of this file (under this header). One entry per session.
 Keep it honest and specific: this log is the "memory" that any AI (and you) uses to resume

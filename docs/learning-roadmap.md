@@ -62,9 +62,9 @@ Items marked ⭐ are **optional/tentative** and never gate the core roadmap.
 
 ## Phase 4 — Linux Fundamentals
 
-- [ ] I can explain the Filesystem Hierarchy Standard and why the layout exists.
-- [ ] I can explain the difference between a file, a directory, and a mount point.
-- [ ] I can explain what an inode is and what a hard link vs a soft link means.
+- [x] I can explain the Filesystem Hierarchy Standard and why the layout exists.
+- [x] I can explain the difference between a file, a directory, and a mount point.
+- [x] I can explain what an inode is and what a hard link vs a soft link means.
 - [ ] I can explain what a UID and a GID are and how Linux decides access.
 - [ ] I can explain the difference between a primary and a secondary group.
 - [ ] I can explain rwx permissions for owner/group/others and how `chmod` computes them.
@@ -184,11 +184,11 @@ Items marked ⭐ are **optional/tentative** and never gate the core roadmap.
 
 | Phase | Self-assessment | Mentor validation | Date |
 |---|---|---|---|
-| 0 Planning | ⬜ | ⬜ | |
-| 1 VM Setup | ⬜ | ⬜ | |
-| 2 Meeting Debian | ⬜ | ⬜ | |
-| 3 Version Control | ⬜ | ⬜ | |
-| 4 Linux Fundamentals | ⬜ | ⬜ | |
+| 0 Planning | ✅ | ✅ | 2026-08-03 |
+| 1 VM Setup | ✅ | ✅ | 2026-08-13 |
+| 2 Meeting Debian | ✅ | ✅ | 2026-08-31 |
+| 3 Version Control | ✅ | ✅ | 2026-08-31 |
+| 4 Linux Fundamentals | 🔄 | ⬜ | 2026-09-07 (Labs 03-04 done) |
 | 5 System Administration | ⬜ | ⬜ | |
 | 6 Storage | ⬜ | ⬜ | |
 | 7 Networking | ⬜ | ⬜ | |
