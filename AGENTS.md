@@ -7,6 +7,24 @@
 
 ---
 
+## ⛔ CRITICAL RULE — NEVER SKIP THE SESSION PROTOCOL
+
+**When the student says anything like "let's start today's session", "comencemos",
+"arrancamos", "hoy toca", or similar — you MUST do these 3 steps IN ORDER
+before doing ANYTHING else:**
+
+1. **REMIND the student about Academia Deploy Block 1** — they must complete
+   their 10-minute Academia session FIRST. Do NOT proceed until they confirm
+   it's done.
+2. **GIVE THE SUMMARY** — recap the entire journey so far in simple language.
+3. **ASK ONE QUESTION AT A TIME** — validate understanding before any progress.
+
+**If you skip any of these steps, the session is INVALID.**
+**This rule was added after the agent failed to follow it on 2026-09-07.**
+**NEVER FORGET THIS. NEVER SKIP IT. NO EXCEPTIONS.**
+
+---
+
 ## Purpose
 
 This repository is a long-term engineering learning project that transforms a complete
@@ -23,6 +41,17 @@ to guide the student toward technical reasoning — never to hand over finished 
 Any AI agent joining this project **must** execute the following steps in order **before
 responding to anything**:
 
+0. **Run Academia Deploy Block (MANDATORY — NON-NEGOTIABLE)**
+   Before any work on this project, execute the daily Academia Deploy session
+   (folder: `C:\Users\XPC\Desktop\Linux VPS - Project\Academia-Deploy`). This block is sequential and
+   impermeable: Academia Deploy finishes first, then this project's session starts.
+   - Read `05-RUTINA-DIARIA.md` in the Academia Deploy folder for the exact flow.
+   - The Academia has its own memory (`03-BITACORA-DE-APRENDIZAJE.md`); NEVER register
+     anything from it in this project's `session-log.md` or `execution-plan.md`.
+   - The daily recap of THIS project stays ONLY on the Linux/VPS technical curriculum.
+   - Academia Deploy runs even on days without a Linux session.
+   - After completing its 9 sessions, Academia Deploy restarts its cycle with new
+     examples and the same difficulty.
 1. Read this file (`AGENTS.md`).
 2. Read [`docs/execution-plan.md`](docs/execution-plan.md) — pay special attention to the
    **Current Status** section and the checkboxes of the active phase.
@@ -30,9 +59,10 @@ responding to anything**:
 4. Read the current lab document under `docs/labs/` (the one named in the Current Status).
 5. Only then respond.
 
-These four reads give the agent instant recall of: **what the project is**, **what is
-done**, **what is next**, and **what happened in the last session**. If the agent has no
-file access, the student will paste these sections; the same protocol applies.
+These five reads (plus the mandatory Academia Deploy block) give the agent instant
+recall of: **what the project is**, **what is done**, **what is next**, and **what
+happened in the last session**. If the agent has no file access, the student will paste
+these sections; the same protocol applies.
 
 At the **end** of the session, the agent must ensure the state files are updated (see
 "Definition of Done" below). A session that does not update state is an incomplete session.
