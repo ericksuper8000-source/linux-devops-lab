@@ -2,7 +2,7 @@
 
 > **Phase:** Phase 3 — Version Control & Repositories
 > **Estimated duration:** 1 session
-> **Status:** ⬜ Pending
+> **Status:** ✅ Complete (2026-08-31, Session 07)
 > **Prerequisites:** Lab 01 (git installed, first commit made)
 
 ---
@@ -29,24 +29,31 @@ makes that promise real and sets up the dual-CI strategy used later (ADR-0002).
 
 ## Checklist
 
-- [ ] Concept check: student explains remote vs local (mentor validates).
-- [ ] Create the GitHub repository (public, no auto-generated README):
-  - [ ] Name: `linux-devops-labs`
-  - [ ] Do **not** let GitHub create files (avoids a merge conflict on first push)
-- [ ] Create the GitLab repository (public, same name, no auto-generated files).
-- [ ] Add the SSH public key to GitHub (`cat ~/.ssh/id_ed25519.pub`).
-- [ ] Add the SSH public key to GitLab.
-- [ ] Add remotes to the local repo:
-  - [ ] `git remote add github git@github.com:<user>/linux-devops-labs.git`
-  - [ ] `git remote add gitlab git@gitlab.com:<user>/linux-devops-labs.git`
-  - [ ] Verify: `git remote -v`
-- [ ] Push to both: `git push -u github main` and `git push -u gitlab main`
-- [ ] On both platforms verify:
-  - [ ] README renders
-  - [ ] Commit history shows the initial commit(s)
-  - [ ] `.gitignore` working as expected
-- [ ] Update `execution-plan.md` (Phase 3 checkboxes + Current Status), commit, push to both.
-- [ ] Update the labs index status in `docs/labs/README.md`.
+- [x] Concept check: student explains remote vs local (mentor validates).
+- [x] Create the GitHub repository (public, no auto-generated README):
+  - [x] Name: `linux-devops-lab`
+  - [x] Do **not** let GitHub create files (avoids a merge conflict on first push)
+- [x] Create the GitLab repository (public, same name, no auto-generated files).
+- [x] Add the SSH public key to GitHub (`cat ~/.ssh/id_ed25519.pub`).
+- [x] Add the SSH public key to GitLab.
+- [x] Add remotes to the local repo:
+  - [x] `git remote add github git@github.com:ericksuper8000-source/linux-devops-lab.git`
+  - [x] `git remote add gitlab git@gitlab.com:ericksuper80/linux-devops-lab.git`
+  - [x] Verify: `git remote -v`
+- [x] Push to both: `git push -u github main` and `git push -u gitlab main`
+- [x] On both platforms verify:
+  - [x] README renders
+  - [x] Commit history shows the initial commit(s)
+  - [x] `.gitignore` working as expected
+- [x] Update `execution-plan.md` (Phase 3 checkboxes + Current Status), commit, push to both.
+- [x] Update the labs index status in `docs/labs/README.md`.
+
+> ✅ **Completed 2026-08-31 (Session 07).** Project published on both platforms. GitHub user
+> `ericksuper8000-source`, GitLab user `ericksuper80`. VM ed25519 public key added to both
+> (`Debian VM`). SSH validated on both (`ssh -T git@github.com` / `git@gitlab.com`). Both
+> remotes connected and pushed (`Everything up-to-date`); README + commit history verified.
+> A note: the **passphrase** (set at `ssh-keygen` time) is prompted by the local keyring and
+> is distinct from the Debian login password.
 
 ## Mentor Questions
 

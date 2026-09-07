@@ -10,9 +10,11 @@
 
 | Lab | Title | Phase | Status |
 |---|---|---|---|
-| 00 | [Meeting Your Debian Server](lab-00-meeting-debian.md) | 2 | ⬜ Pending |
-| 01 | [Installing & Configuring Git](lab-01-installing-git.md) | 3 | ⬜ Pending |
-| 02 | [Publishing to GitHub & GitLab](lab-02-publishing-repositories.md) | 3 | ⬜ Pending |
+| 00 | [Meeting Your Debian Server](lab-00-meeting-debian.md) | 2 | ✅ Complete |
+| 01 | [Installing & Configuring Git](lab-01-installing-git.md) | 3 | ✅ Complete |
+| 02 | [Publishing to GitHub & GitLab](lab-02-publishing-repositories.md) | 3 | ✅ Complete |
+| 03 | [Filesystem & FHS](lab-03-filesystem-fhs.md) | 4 | ✅ Complete |
+| 04 | [Files, Inodes & Links](lab-04-files-inodes-links.md) | 4 | ✅ Complete |
 
 > More labs are created progressively — each one is written in detail only when we reach
 > its phase (see `docs/execution-plan.md` for the full roadmap).

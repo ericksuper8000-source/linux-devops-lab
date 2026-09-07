@@ -2,7 +2,7 @@
 
 > **Phase:** Phase 3 — Version Control & Repositories
 > **Estimated duration:** 1 session
-> **Status:** ⬜ Pending
+> **Status:** ✅ Complete (2026-08-31, Session 07)
 > **Prerequisites:** Lab 00 complete; baseline snapshot exists
 
 ---
@@ -29,22 +29,28 @@ Git solves — and now there is a real, material need for it.
 
 ## Checklist
 
-- [ ] Concept check: the student explains why version control is needed (mentor validates).
-- [ ] Install Git: `sudo apt update && sudo apt install -y git`
-- [ ] Configure identity:
-  - [ ] `git config --global user.name "<Your Name>"`
-  - [ ] `git config --global user.email "<your email>"`
-  - [ ] `git config --global init.defaultBranch main`
-- [ ] Configure a text editor (nano is fine for now; justify the choice).
-- [ ] Generate an SSH key pair: `ssh-keygen -t ed25519 -C "<your email>"`
-  - [ ] Explain why ed25519 and why a passphrase.
-- [ ] Initialize the repository: `git init` inside `~/linux-devops-labs`
-- [ ] Verify `.gitignore` excludes `_archive/` and junk:
-  - [ ] `git status` shows only intended files
-- [ ] Stage and review: `git add .` then `git diff --cached` (learn to inspect before committing)
-- [ ] **First commit:** `git commit -m "docs: initialize linux devops labs repository"`
-- [ ] Show history: `git log --oneline`
-- [ ] Verify nothing sensitive is tracked (no `.env`, keys, personal data)
+- [x] Concept check: the student explains why version control is needed (mentor validates).
+- [x] Install Git: `sudo apt update && sudo apt install -y git`
+- [x] Configure identity:
+  - [x] `git config --global user.name "Erick_Dev"`
+  - [x] `git config --global user.email "ericksuper80@gmail.com"`
+  - [x] `git config --global init.defaultBranch main`
+- [x] Configure a text editor (nano is fine for now; justify the choice).
+- [x] Generate an SSH key pair: `ssh-keygen -t ed25519 -C "ericksuper80@gmail.com"`
+  - [x] Explain why ed25519 and why a passphrase.
+- [x] Initialize the repository: `git init` inside `~/linux-devops-labs`
+- [x] Verify `.gitignore` excludes `_archive/` and junk:
+  - [x] `git status` shows only intended files
+- [x] Stage and review: `git add .` then `git diff --cached` (learn to inspect before committing)
+- [x] **First commit:** `git commit -m "docs: initialize linux devops labs repository"`
+- [x] Show history: `git log --oneline`
+- [x] Verify nothing sensitive is tracked (no `.env`, keys, personal data)
+
+> ✅ **Completed 2026-08-31 (Session 07).** Identity configured to match the Windows host
+> (`Erick_Dev` / `ericksuper80@gmail.com`) so authorship is consistent across machines.
+> ed25519 SSH key generated in the VM (not copied from Windows). Public key saved at
+> `C:\Users\XPC\Desktop\Archivo.txt` for adding to GitHub/GitLab in Lab 02. The repository
+> `.git` lives inside the VM at `~/linux-devops-labs` (host folder has no `.git`).
 
 ## Mentor Questions
 

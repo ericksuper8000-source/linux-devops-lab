@@ -27,15 +27,25 @@ labs — it tells you exactly where the project is and what to do next.
 
 > **This block is updated at the end of every session.**
 
-- **Current phase:** Phase 2 — Meeting Debian
-- **Current lab / task:** Lab 00 — Meeting Your Debian Server (`docs/labs/lab-00-meeting-debian.md`)
+- **Current phase:** Phase 4 — Linux Fundamentals (🔄 in progress)
+- **Current lab / task:** Lab 04 ✅ Complete. Next: Lab 05 — Users & Groups (`docs/labs/lab-05...` — pending creation)
 - **Phase 1 (VM Setup):** ✅ Complete
-- **Last completed item:** Phase 1 — VM environment ready: VM verified (Debian 13 trixie, kernel `6.12.101+deb13-amd64`), Guest Additions active (`vboxguest`), shared folder `linux-vps-project` mounted at `/mnt/host`, workspace `~/linux-devops-labs` created, baseline snapshot `baseline-clean-debian` taken
-- **Daily recap status:** Active every session — always covers the full technical curriculum seen so far (one question at a time until assimilation is confirmed)
-- **Next session target:** Lab 00 — observe the clean server (no modifications): OS/kernel, hardware, users, services, storage, FHS, packages, network, boot logs
-- **Blockers / open questions:** None recorded
-- **Last session:** Session 03 — Phase 1 completed (VM verified, Guest Additions confirmed, shared folder fixed + mounted, workspace created, baseline snapshot taken)
-- **Last commit / push:** N/A — repository not created yet (Lab 01)
+- **Phase 2 (Meeting Debian):** ✅ Complete
+- **Phase 3 (Version Control):** ✅ Complete (Labs 01–02)
+- **Last completed item:** Lab 04 — Files, Inodes & Links: inodes, hard links vs soft links, `ls -li`, `stat`, `file`, practical use cases
+- **Daily recap status:** N/A — protocol not applied today (starts from 2026-09-08 onward)
+- **Next session target:** Lab 05 — Users & Groups (concept-first: UID/GID, `/etc/passwd`, `/etc/shadow`, `/etc/group`, primary vs secondary groups, `useradd`, `usermod`, `groupadd`, `id`, scenario: onboarding a new developer)
+- **Blockers / open questions:**
+  - SSH service not running — investigate in Lab 19.
+- **Environment architecture (confirmed 2026-09-07):** `Linux VPS - Project` (Windows) = project memory/
+  instructions (AI-edited). `~/linux-devops-labs` (VM) = real project/repo with `.git` (what gets pushed).
+  Windows folder is mounted into the VM at `/mnt/host` via VirtualBox shared folder (tag `linux-vps-project`).
+  Shared folder must be manually mounted: `sudo mount -t vboxsf linux-vps-project /mnt/host`.
+- **Git identity (applied in VM):** `user.name = Erick_Dev`, `user.email = ericksuper80@gmail.com`. Same identity across Windows + VM. VM SSH keys generated separately. GitHub username `ericksuper8000-source`, GitLab username `ericksuper80`. VM public key added to both platforms (`Debian VM`).
+- **Repo name (clarified 2026-09-07):** The repo on GitHub/GitLab is `linux-devops-lab` (WITHOUT trailing 's'). The local workspace folder is `~/linux-devops-labs` (WITH 's'). Remote URLs: `git@github.com:ericksuper8000-source/linux-devops-lab.git` and `git@gitlab.com:ericksuper80/linux-devops-lab.git`.
+- **Session protocol (established 2026-09-07):** Every session starts with 3 mandatory steps: (1) Academia Deploy reminder, (2) Summary of the journey, (3) One-question-at-a-time validation. Documented in AGENTS.md CRITICAL RULE.
+- **Last session:** Session 08 — Lab 03 completed (Filesystem & FHS explored, FHS contract understood, absolute/relative paths, `ls -la`, symlinks)
+- **Last commit / push:** Pending — Lab 03 changes need to be committed and pushed by student.
 
 ---
 
@@ -46,8 +56,8 @@ labs — it tells you exactly where the project is and what to do next.
 | Project | ☒ In progress |
 | Plan | ☒ Defined |
 | Zero-cost policy | ☒ Active (ADR-0003) |
-| Version control | ⬜ Not started (Lab 01) |
-| Public repositories (GitHub + GitLab) | ⬜ Not created |
+| Version control | ☒ Active (Git installed, repo initialized, first commit) |
+| Public repositories (GitHub + GitLab) | ☒ Created & pushed (linux-devops-lab public on both) |
 | Server evolution | ⬜ Not started |
 
 ---
@@ -115,21 +125,20 @@ no modifications.**
 
 **Estimated duration:** 1–2 sessions
 
-- [ ] **Lab 00 — Meeting Your Debian Server** (`docs/labs/lab-00-meeting-debian.md`)
-  - [ ] Identify OS, kernel, and hostname (`/etc/os-release`, `uname`, `hostnamectl`)
-  - [ ] Inspect hardware resources (CPU, RAM, disk)
-  - [ ] Identify existing users and groups (`/etc/passwd`, `/etc/group`)
-  - [ ] Identify running services (systemd)
-  - [ ] Analyze the initial process tree
-  - [ ] Inspect disk layout and mount points
-  - [ ] Explore the directory structure (FHS)
-  - [ ] List installed software
-  - [ ] Inspect the initial network configuration
-  - [ ] Review boot logs and messages
-  - [ ] Document the laboratory + collect screenshots
+- [ ] **Lab 00 — Meeting Your Debian Server** (`docs/labs/lab-00-meeting-debian.md`) — ✅ Complete (Blocks A–I observed, Report filled, screenshots collected)
+  - [x] Identify OS, kernel, and hostname (`/etc/os-release`, `uname`, `hostnamectl`)
+  - [x] Inspect hardware resources (CPU, RAM, disk)
+  - [x] Identify existing users and groups (`/etc/passwd`, `/etc/group`)
+  - [x] Identify running services (systemd)
+  - [x] Inspect disk layout and mount points (`lsblk -f`, `df -h`, `/etc/fstab`)
+  - [x] Explore the directory structure (FHS)
+  - [x] List installed software (`dpkg -l`)
+  - [x] Inspect the initial network configuration (`ip a`, `ip route`, `ss -tulpn`)
+  - [x] Review boot logs and messages (`journalctl -b`, `journalctl -b -p err`)
+  - [x] Document the laboratory + collect screenshots
   - [ ] Pass the mentor validation (student explains back)
 
-**Status:** ⬜ Pending
+**Status:** ✅ Complete (Lab 00 done; Lab 01 next in Phase 3)
 
 ---
 
@@ -140,25 +149,25 @@ publicly visible in real time.
 
 **Estimated duration:** 2–3 sessions
 
-- [ ] **Lab 01 — Installing & Configuring Git** (`docs/labs/lab-01-installing-git.md`)
-  - [ ] Understand why version control is needed (concept before command)
-  - [ ] Install Git on Debian
-  - [ ] Configure `user.name` and `user.email`
-  - [ ] Choose and configure a default text editor
-  - [ ] Generate an SSH key pair (why: key-based auth, passwordless push)
-  - [ ] Initialize the repository in `~/linux-devops-labs`
-  - [ ] Write the initial `.gitignore` and verify ignored files
-  - [ ] Make the **first commit** (the whole existing documentation)
-- [ ] **Lab 02 — Publishing to GitHub & GitLab** (`docs/labs/lab-02-publishing-repositories.md`)
-  - [ ] Create the repository on GitHub (public)
-  - [ ] Create the repository on GitLab (public)
-  - [ ] Add GitHub as a remote and push
-  - [ ] Add GitLab as a remote and push
-  - [ ] Verify both repos render the README correctly
-  - [ ] Update `execution-plan.md` status and commit + push
-  - [ ] Pass the mentor validation
+- [x] **Lab 01 — Installing & Configuring Git** (`docs/labs/lab-01-installing-git.md`) — ✅ Complete
+  - [x] Understand why version control is needed (concept before command)
+  - [x] Install Git on Debian
+  - [x] Configure `user.name` and `user.email`
+  - [x] Choose and configure a default text editor
+  - [x] Generate an SSH key pair (why: key-based auth, passwordless push)
+  - [x] Initialize the repository in `~/linux-devops-labs`
+  - [x] Write the initial `.gitignore` and verify ignored files
+  - [x] Make the **first commit** (the whole existing documentation)
+- [x] **Lab 02 — Publishing to GitHub & GitLab** (`docs/labs/lab-02-publishing-repositories.md`) — ✅ Complete
+  - [x] Create the repository on GitHub (public)
+  - [x] Create the repository on GitLab (public)
+  - [x] Add GitHub as a remote and push
+  - [x] Add GitLab as a remote and push
+  - [x] Verify both repos render the README correctly
+  - [x] Update `execution-plan.md` status and commit + push
+  - [x] Pass the mentor validation
 
-**Status:** ⬜ Pending
+**Status:** ✅ COMPLETE (Labs 01 & 02 done — Project published on GitHub & GitLab)
 
 ---
 
@@ -168,15 +177,15 @@ publicly visible in real time.
 
 **Estimated duration:** ~10 sessions
 
-- [ ] **Lab 03 — Filesystem & FHS**
-  - [ ] Why a filesystem hierarchy exists
-  - [ ] Purpose of top-level directories (`/etc`, `/var`, `/usr`, `/home`, `/tmp`, `/opt`)
-  - [ ] Navigation and inspection (`ls`, `pwd`, `cd`, `stat`)
-  - [ ] Absolute vs relative paths
-- [ ] **Lab 04 — Files, Inodes & Links**
-  - [ ] What a file is; inodes and metadata
-  - [ ] Hard links vs soft (symbolic) links
-  - [ ] `ls -li`, `ln`, `stat`, `file`
+- [x] **Lab 03 — Filesystem & FHS**
+  - [x] Why a filesystem hierarchy exists
+  - [x] Purpose of top-level directories (`/etc`, `/var`, `/usr`, `/home`, `/tmp`, `/opt`)
+  - [x] Navigation and inspection (`ls`, `pwd`, `cd`, `stat`)
+  - [x] Absolute vs relative paths
+- [x] **Lab 04 — Files, Inodes & Links**
+  - [x] What a file is; inodes and metadata
+  - [x] Hard links vs soft (symbolic) links
+  - [x] `ls -li`, `ln`, `stat`, `file`
 - [ ] **Lab 05 — Users & Groups**
   - [ ] Why users and groups exist; UID / GID
   - [ ] `/etc/passwd`, `/etc/shadow`, `/etc/group`
@@ -193,7 +202,7 @@ publicly visible in real time.
   - [ ] When special bits make sense (e.g., `/tmp`)
   - [ ] ACLs with `getfacl` / `setfacl` and when they are needed
 
-**Status:** ⬜ Pending
+**Status:** 🔄 In Progress (Lab 03 complete)
 
 ---
 

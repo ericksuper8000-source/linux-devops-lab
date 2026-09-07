@@ -204,29 +204,89 @@ Answer these in the Report section before the lab is considered done:
 
 ### What I did
 
-<Summary of the observation blocks completed, in your own words.>
+Completed all 9 observation blocks (A–I) of Lab 00. The goal was to observe the clean Debian server without making any changes:
+
+- **A:** Identified the system: Debian 13.6 (trixie), kernel 6.12.101+deb13-amd64, hostname `Debian`.
+- **B:** Inspected hardware: 3 CPUs, 1.9Gi RAM, disk `sda` with partitions sda1 (ext4, root) and sda5 (swap).
+- **C:** Identified users and groups: `Erick` (UID 1000, human), system accounts like `root` (UID 0), `daemon`, `Debian-gdm` (UID < 1000).
+- **D:** Listed running services: ~23 services active. SSH service NOT found running (confirmed). VM has a graphical desktop (GNOME).
+- **E:** Analyzed storage: `lsblk -f` showed sda1 ext4 mounted at `/`, sda5 swap. `df -h` showed 28G total, 9.4G used. `tmpfs` mounts live in RAM and disappear on power-off. `/etc/fstab` uses UUID for robustness.
+- **F:** Explored FHS: `/etc` = configuration (124 entries), `/var` = variable data (logs, cache), `/usr` = software (bin, lib), `/home` = users (only `Erick`). Symlinks: `bin -> usr/bin`, `lib -> usr/lib`.
+- **G:** Listed software: 1600 packages installed. `dpkg` is low-level (no dependency resolution), `apt` is high-level (resolves dependencies from repos).
+- **H:** Inspected network: `enp0s3` IP `10.0.2.15` (VirtualBox NAT), gateway `10.0.2.2`, DNS `8.8.8.8`/`8.8.4.4`. `ss -tulpn` showed no SSH listening. CUPS on `127.0.0.1:631` (local only).
+- **I:** Reviewed boot logs: `journalctl -b` showed systemd dependency order (slices → sockets → services → targets). Errors: gnome-keyring failed, user-session-migration failed — system continued booting (error encapsulation). User not in `adm`/`systemd-journal` groups limits log visibility.
 
 ### How it works / why
 
-<Your answers to the 8 Mentor Questions above.>
+**1. What Debian release and kernel are we on? Why must you know this before changing anything?**
+Debian 13.6 (trixie), kernel 6.12.101+deb13-amd64. You must know the version before making changes because different versions support different packages and features. Installing something incompatible could break other programs or cause system instability.
+
+**2. Which accounts are humans and which are system accounts? How can you tell?**
+UID >= 1000 are human accounts (like `Erick`, UID 1000). UID < 1000 are system accounts (like `root`, `daemon`, `www-data`). System accounts exist to run services with the principle of least privilege — each service has its own account with only the permissions it needs, so if one service is compromised, the damage is contained and doesn't affect the rest of the system.
+
+**3. What is the difference between a service and a process?**
+A process is any program currently running on the system. A service is a process that systemd manages in the background — it keeps it running, restarts it if it fails, and controls when it starts and stops. All services are processes, but not all processes are services.
+
+**4. Why is /etc separate from /var? Give one concrete example of each.**
+`/etc` contains configuration files unique to this machine (e.g., `/etc/fstab` defines what disks to mount). `/var` contains data that changes during normal operation (e.g., `/var/log/` stores log files). The separation keeps the admin's configuration separate from the system's variable data, making backups and updates simpler.
+
+**5. What is the default gateway and why does the VM have one?**
+The default gateway is `10.0.2.2`. The VM lives on a private network (`10.0.2.x`) that doesn't exist on the internet. The gateway acts as an intermediary that translates the VM's traffic and sends it out through the host computer to reach the internet.
+
+**6. What was listening on port 22, and why is that expected?**
+Nothing was listening on port 22. This is unexpected because we selected "SSH server" during installation, but the SSH service is not running. This will be investigated in its dedicated lab (Lab 19).
+
+**7. What is the FHS and why is it a "contract"?**
+The Filesystem Hierarchy Standard (FHS) defines where different types of files live: `/etc` for config, `/var` for variable data, `/usr` for software, `/home` for users. It's called a "contract" because every Linux distribution follows the same layout, so if you learn it once, you can navigate any Linux system.
+
+**8. Name one thing you observed that you cannot explain yet — and where we will find the answer later.**
+SSH was selected during installation but is not running. We'll find the answer in Lab 19 (SSH), where we'll investigate why it's not active and how to configure it properly.
 
 ### Commands I used
 
 | Command | Why I used it |
 |---|---|
 | `cat /etc/os-release` | Identify Debian version before anything else |
-| … | … |
+| `uname -a` | Get kernel version and architecture |
+| `hostnamectl` | Systemd summary: hostname, OS, kernel, hardware |
+| `uptime` | How long the system has been running, load average |
+| `lscpu` | CPU model and core count |
+| `free -h` | RAM total, used, and available (human-readable) |
+| `lsblk -f` | Block devices with filesystem types and mount points |
+| `df -h` | Filesystem usage (disk space) |
+| `whoami` | Confirm current user |
+| `id` | UID, GID, and group membership |
+| `getent passwd` | List all accounts in /etc/passwd |
+| `getent group` | List all groups |
+| `systemctl list-units --type=service --state=running` | List active services |
+| `cat /etc/fstab` | See what is configured to mount at boot |
+| `mount` | See all currently mounted filesystems |
+| `ls -la /` | Top-level directory structure |
+| `ls -la /etc` | Configuration files |
+| `ls /var` | Variable data directories |
+| `ls /usr` | System software directories |
+| `ls /home` | User home directories |
+| `dpkg -l \| wc -l` | Count installed packages |
+| `dpkg -l` | List all installed packages |
+| `ip a` | Interfaces and IP addresses |
+| `ip route` | Routing table and default gateway |
+| `cat /etc/hosts` | Static hostname mappings |
+| `cat /etc/resolv.conf` | DNS nameservers |
+| `ss -tulpn` | Listening ports and sockets |
+| `journalctl -b` | All logs since this boot |
+| `journalctl -b -p err` | Only errors since boot |
 
 ### Problems encountered
 
 | Problem | Investigation | Solution |
 |---|---|---|
-| … | … | … |
+| SSH service not running despite being selected during installation | Confirmed via `systemctl` and `ss -tulpn` — no SSH process or port 22 | Observation only; will investigate in Lab 19 |
+| `ls usr` returned "No such file or directory" | Forgot the leading `/` for absolute path | Corrected to `ls /usr` — same lesson as tilde: paths need correct context |
+| User cannot see all journalctl messages | Hint says user not in `adm` or `systemd-journal` groups | Need to add user to those groups (covered in future user management labs) |
 
 ### Lessons learned / self-explanation
 
-> Write 5–10 sentences explaining what a "clean Debian server" is now that you have met
-> one. If you can explain it to a friend, you understood the lab.
+A "clean" Debian server is not empty — it already has 1600 packages, ~23 running services, a graphical desktop, and network configuration out of the box. The system is organized by the FHS contract: config in `/etc`, variable data in `/var`, software in `/usr`, users in `/home`. Every service runs under its own system account for security (least privilege). The network uses NAT through VirtualBox with a gateway to reach the internet. Boot logs show systemd starts everything by dependency order, and non-critical failures don't stop the system. The most important lesson: always observe before you change — understanding the baseline is the foundation of every safe administration decision.
 
 ### Evidence
 
