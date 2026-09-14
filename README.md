@@ -74,7 +74,7 @@ The project is built to cost **$0**. All tools, cloud services, and domains are 
 | 1 | VM Environment Setup | ✅ Complete |
 | 2 | Meeting Debian | ✅ Complete |
 | 3 | Version Control & Repositories | ✅ Complete |
-| 4 | Linux Fundamentals | 🔄 In Progress (Labs 03–04 ✅) |
+| 4 | Linux Fundamentals | 🔄 In Progress (Labs 03–05 ✅) |
 | 5 | System Administration | ⬜ Pending |
 | 6 | Storage | ⬜ Pending |
 | 7 | Networking | ⬜ Pending |

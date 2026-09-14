@@ -65,8 +65,8 @@ Items marked ⭐ are **optional/tentative** and never gate the core roadmap.
 - [x] I can explain the Filesystem Hierarchy Standard and why the layout exists.
 - [x] I can explain the difference between a file, a directory, and a mount point.
 - [x] I can explain what an inode is and what a hard link vs a soft link means.
-- [ ] I can explain what a UID and a GID are and how Linux decides access.
-- [ ] I can explain the difference between a primary and a secondary group.
+- [x] I can explain what a UID and a GID are and how Linux decides access.
+- [x] I can explain the difference between a primary and a secondary group.
 - [ ] I can explain rwx permissions for owner/group/others and how `chmod` computes them.
 - [ ] I can explain `umask`, SUID, SGID, sticky bit, and ACLs with a real example.
 
@@ -188,7 +188,7 @@ Items marked ⭐ are **optional/tentative** and never gate the core roadmap.
 | 1 VM Setup | ✅ | ✅ | 2026-08-13 |
 | 2 Meeting Debian | ✅ | ✅ | 2026-08-31 |
 | 3 Version Control | ✅ | ✅ | 2026-08-31 |
-| 4 Linux Fundamentals | 🔄 | ⬜ | 2026-09-07 (Labs 03-04 done) |
+| 4 Linux Fundamentals | 🔄 | ⬜ | 2026-09-14 (Labs 03-05 done) |
 | 5 System Administration | ⬜ | ⬜ | |
 | 6 Storage | ⬜ | ⬜ | |
 | 7 Networking | ⬜ | ⬜ | |

@@ -28,24 +28,25 @@ labs — it tells you exactly where the project is and what to do next.
 > **This block is updated at the end of every session.**
 
 - **Current phase:** Phase 4 — Linux Fundamentals (🔄 in progress)
-- **Current lab / task:** Lab 04 ✅ Complete. Next: Lab 05 — Users & Groups (`docs/labs/lab-05...` — pending creation)
+- **Current lab / task:** Lab 05 ✅ Complete 2026-09-14. Next: Lab 06 — Permissions & Ownership
 - **Phase 1 (VM Setup):** ✅ Complete
 - **Phase 2 (Meeting Debian):** ✅ Complete
 - **Phase 3 (Version Control):** ✅ Complete (Labs 01–02)
-- **Last completed item:** Lab 04 — Files, Inodes & Links: inodes, hard links vs soft links, `ls -li`, `stat`, `file`, practical use cases
-- **Daily recap status:** N/A — protocol not applied today (starts from 2026-09-08 onward)
-- **Next session target:** Lab 05 — Users & Groups (concept-first: UID/GID, `/etc/passwd`, `/etc/shadow`, `/etc/group`, primary vs secondary groups, `useradd`, `usermod`, `groupadd`, `id`, scenario: onboarding a new developer)
+- **Last completed item:** Lab 05 — Users & Groups: creado dev-team 1001 + dev-nuevo 1001, secundario sudo, su probado, limpieza userdel -r/groupdel verificada
+- **Daily recap status:** 2026-09-14 ✅ Passed (inodos + Lab 05 validado paso a paso)
+- **Next session target:** Lab 06 — Permissions & Ownership (rwx, chmod, chown, umask) + commit/push pendiente Labs 03-05
 - **Blockers / open questions:**
   - SSH service not running — investigate in Lab 19.
-- **Environment architecture (confirmed 2026-09-07):** `Linux VPS - Project` (Windows) = project memory/
+- **Environment architecture (confirmed 2026-09-07, recordado 2026-09-14):** `Linux VPS - Project` (Windows) = project memory/
   instructions (AI-edited). `~/linux-devops-labs` (VM) = real project/repo with `.git` (what gets pushed).
   Windows folder is mounted into the VM at `/mnt/host` via VirtualBox shared folder (tag `linux-vps-project`).
   Shared folder must be manually mounted: `sudo mount -t vboxsf linux-vps-project /mnt/host`.
+  ⚠️ Manual mount NO sobrevive reboot — verificar SIEMPRE antes de sincronizar con `mount | grep vboxsf` + `ls /mnt/host`; si vacío, remontar. Persistente vía fstab se ve en Lab 15, no antes.
 - **Git identity (applied in VM):** `user.name = Erick_Dev`, `user.email = ericksuper80@gmail.com`. Same identity across Windows + VM. VM SSH keys generated separately. GitHub username `ericksuper8000-source`, GitLab username `ericksuper80`. VM public key added to both platforms (`Debian VM`).
 - **Repo name (clarified 2026-09-07):** The repo on GitHub/GitLab is `linux-devops-lab` (WITHOUT trailing 's'). The local workspace folder is `~/linux-devops-labs` (WITH 's'). Remote URLs: `git@github.com:ericksuper8000-source/linux-devops-lab.git` and `git@gitlab.com:ericksuper80/linux-devops-lab.git`.
 - **Session protocol (established 2026-09-07):** Every session starts with 3 mandatory steps: (1) Academia Deploy reminder, (2) Summary of the journey, (3) One-question-at-a-time validation. Documented in AGENTS.md CRITICAL RULE.
-- **Last session:** Session 08 — Lab 03 completed (Filesystem & FHS explored, FHS contract understood, absolute/relative paths, `ls -la`, symlinks)
-- **Last commit / push:** Pending — Lab 03 changes need to be committed and pushed by student.
+- **Last session:** Session 10 — 2026-09-14 Lab 05 complete + refuerzo inodos. Sync montado de nuevo tras reboot.
+- **Last commit / push:** Pending — Labs 03-05 + Session 10 necesitan commit + push a ambos remotos.
 
 ---
 
@@ -186,12 +187,12 @@ publicly visible in real time.
   - [x] What a file is; inodes and metadata
   - [x] Hard links vs soft (symbolic) links
   - [x] `ls -li`, `ln`, `stat`, `file`
-- [ ] **Lab 05 — Users & Groups**
-  - [ ] Why users and groups exist; UID / GID
-  - [ ] `/etc/passwd`, `/etc/shadow`, `/etc/group`
-  - [ ] Primary vs secondary groups
-  - [ ] `useradd`, `usermod`, `groupadd`, `id`
-  - [ ] Scenario: onboarding a new developer
+- [x] **Lab 05 — Users & Groups** ✅ 2026-09-14
+  - [x] Why users and groups exist; UID / GID
+  - [x] `/etc/passwd`, `/etc/shadow`, `/etc/group`
+  - [x] Primary vs secondary groups
+  - [x] `useradd`, `usermod`, `groupadd`, `id`
+  - [x] Scenario: onboarding a new developer
 - [ ] **Lab 06 — Permissions & Ownership**
   - [ ] Why Linux needs permissions
   - [ ] rwx model for owner / group / others
@@ -202,7 +203,7 @@ publicly visible in real time.
   - [ ] When special bits make sense (e.g., `/tmp`)
   - [ ] ACLs with `getfacl` / `setfacl` and when they are needed
 
-**Status:** 🔄 In Progress (Lab 03 complete)
+**Status:** 🔄 In Progress (Labs 03-05 complete)
 
 ---
 

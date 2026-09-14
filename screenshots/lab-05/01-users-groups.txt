@@ -1,0 +1,25 @@
+Erick@Debian:~/Desktop$ id dev-nuevo
+uid=1001(dev-nuevo) gid=1001(dev-team) groups=1001(dev-team)
+Erick@Debian:~/Desktop$ getent passwd dev-nuevo
+dev-nuevo:x:1001:1001:Dev Nuevo:/home/dev-nuevo:/bin/bash
+Erick@Debian:~/Desktop$ sudo usermod -aG sudo dev-nuevo
+Erick@Debian:~/Desktop$ id dev-nuevo
+uid=1001(dev-nuevo) gid=1001(dev-team) groups=1001(dev-team),27(sudo)
+Erick@Debian:~/Desktop$ sudo su - dev-nuevo
+dev-nuevo@Debian:~$ whoami
+dev-nuevo
+dev-nuevo@Debian:~$ id
+uid=1001(dev-nuevo) gid=1001(dev-team) groups=1001(dev-team),27(sudo)
+dev-nuevo@Debian:~$ exit
+Erick@Debian:~/Desktop$ whoami
+Erick
+Erick@Debian:~/Desktop$ sudo userdel -r dev-nuevo
+userdel: dev-nuevo mail spool (/var/mail/dev-nuevo) not found
+Erick@Debian:~/Desktop$ getent passwd dev-nuevo
+(vacío = borrado)
+Erick@Debian:~/Desktop$ sudo groupdel dev-team
+Erick@Debian:~/Desktop$ getent group dev-team
+(vacío = borrado)
+Erick@Debian:~/Desktop$ ls /home
+Erick
+(Evidencia reconstruida 2026-09-14 desde notas de sesión — sin datos sensibles, shadow nunca se guarda aquí)

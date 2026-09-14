@@ -15,6 +15,7 @@
 | 02 | [Publishing to GitHub & GitLab](lab-02-publishing-repositories.md) | 3 | ✅ Complete |
 | 03 | [Filesystem & FHS](lab-03-filesystem-fhs.md) | 4 | ✅ Complete |
 | 04 | [Files, Inodes & Links](lab-04-files-inodes-links.md) | 4 | ✅ Complete |
+| 05 | [Users & Groups](lab-05-users-groups.md) | 4 | ✅ Complete |
 
 > More labs are created progressively — each one is written in detail only when we reach
 > its phase (see `docs/execution-plan.md` for the full roadmap).

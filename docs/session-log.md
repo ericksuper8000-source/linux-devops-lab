@@ -24,6 +24,59 @@ sesión de hoy o algo similar lo primero siempre es seguir el proceso como se de
 
 ---
 
+## 2026-09-14 — Session 10 (Refuerzo Lab 04 + Lab 05 iniciado)
+
+**Phase / Lab:** Phase 4 — Linux Fundamentals · Lab 05 — Users & Groups 🔄 In progress (Lab 04 ✅ + refuerzo validado hoy)
+
+**Daily recap (start of day):**
+- Academia Deploy: estudiante confirmó “ya lei la chuleta” (04-CHULETA-VISUAL.md). Se dio por vista Sesión 3 CaaS para hoy.
+- Resumen simple dado: Debian limpio → Lab 00 observación → Labs 01-02 Git + GitHub/GitLab → Lab 03 FHS → Lab 04 inodos ✅ → hoy Lab 05.
+- Validación en curso: pregunta pendiente “dos nombres al mismo inodo, borras uno, ¿qué pasa?” — pausada a petición del estudiante para re-explicar inodos.
+
+**Worked on (refuerzo, no nuevo lab):**
+- Explicación 1 (niño): caja = datos, ficha = inodo (número, dueño, permisos, tamaño, fechas), papelito = nombre. Duro = otro papelito a misma caja. Suave = papelito que dice “ve a buscar allá”.
+- Explicación 2 (real Lab 04): `echo "Hola Lab 04" > archivo-prueba.txt` → inodo ej. 12345; `ls -li` muestra número; `ln archivo hard-link` mismo inodo contador 1→2; `ln -s archivo soft-link` otro inodo ej. 67890 con puntero; `rm archivo` borra solo un nombre; `cat hard-link` sobrevive, `cat soft-link` → “No such file”, `file` → “broken symbolic link”.
+- Pregunta estudiante: “¿para qué en la vida real dos nombres al mismo inodo?” → explicado: duro = ahorrar disco / no duplicar (log 1GB para dos servicios, backups tipo rsnapshot, internos Git, protege de borrado accidental, no cruza discos); suave = ordenar/atajar (bin->usr/bin, python->python3.11, acortar /var/log/nginx, sites-enabled Nginx, cambiar versiones).
+- Estado estudiante: “si ya me queda mas claro” — validación conceptual lograda, falta responder pregunta original con sus palabras en próxima ronda.
+
+**Concepts learned / reinforced:**
+- Inodo = metadata + puntero a bloques, no el nombre. Nombre = entrada de directorio.
+- Duro comparte inodo, sobrevive al rm mientras link count > 0. Suave tiene inodo propio, se rompe si origen desaparece.
+- `ls -li` (inodos + contador), `stat` (detalle), `file` (tipos), `ln` vs `ln -s`.
+
+**Commands / tools used:**
+- Ninguno nuevo hoy (solo repaso). Referenciados del Lab 04: `echo >`, `ls -li`, `ln`, `ln -s`, `rm`, `cat`, `file`, `stat`.
+
+**Errors encountered:**
+- Ninguno técnico. Fricción inicial: estudiante no reconoció “Academia lista / chuleta visual” → se aclaró que Academia-Deploy es subcarpeta creada 2026-08-24, chuleta = 04-CHULETA-VISUAL.md, “Academia lista” era frase inventada del mentor. Se ofreció seguir solo con Linux o con Academia+Linux.
+
+**Questions still open:**
+- ✅ Cerradas hoy: duro borra un nombre sobrevive (dos nombres mismo recurso), suave roto da No such file porque depende de la ruta original — ambas respondidas con sus palabras.
+- Siguiente: Lab 05 práctica creación (useradd/groupadd/usermod/userdel).
+
+**Lab 05 — avance 2026-09-14 (misma Session 10):**
+- Archivo creado: `docs/labs/lab-05-users-groups.md` + índice + execution-plan → Lab 05 🔄.
+- Evidencia VM revisada: `C:\Users\XPC\Desktop\Debian.txt` con `whoami=Erick`, `id uid=1000(Erick) gid=1000(Erick) groups=1000(Erick),100(users)`, `getent passwd | more` (cortado en primera página root→messagebus, falta cola con Erick 1000).
+- Validado: 0=root, 1-999 sistema/programas, 1000+=humanos ✅.
+- Nuevo: `getent passwd Erick` → `Erick:x:1000:1000:Erick,123,123,123,123:/home/Erick:/bin/bash` — explicado formato nombre:x:UID:GID:GECOS:home:shell.
+- Concepto guardado: `getent passwd` = pregunta al portero (NSS, junta local+red) vs `cat /etc/passwd` = abre solo cuaderno local. En VM sola dan igual, en empresa solo getent ve a todos. Misma lógica para group. Propuesto `diff <(cat /etc/passwd) <(getent passwd)` — estudiante pausó (“por el momento esta bien”).
+- Permisos: `ls -l /etc/passwd/group/shadow` → passwd/group `-rw-r--r--` legibles, shadow `-rw-r----- root:shadow` cerrado. Probado `cat /etc/shadow` como Erick → Permission denied ✅, como root sí lee. Explicado `*` = nunca entra, `!` = bloqueado, `$y$` = hash real.
+- ⚠️ Seguridad: Debian.txt contenía volcado shadow con hashes root+Erick. Verificado proyecto y GitHub limpios (grep \$y\$ = 0, sin Debian.txt en repo). Debian.txt en Desktop redactado 2026-09-14. Regla: nunca pegar shadow/keys/tokens, solo id/getent.
+- Creación: `sudo groupadd dev-team` → `getent group dev-team` = `dev-team:x:1001` ✅ (GID 1001 libre, sin miembros).
+- Creación: `sudo useradd -m -s /bin/bash -g dev-team -c "Dev Nuevo" dev-nuevo` → `id dev-nuevo` = `uid=1001 gid=1001 groups=1001` ✅ + `getent passwd dev-nuevo` = `dev-nuevo:x:1001:1001:Dev Nuevo:/home/dev-nuevo:/bin/bash` ✅. Explicado id (números+puertas) vs getent (ficha) vs -c (etiqueta GECOS, no login) vs -m (casa) vs -s (shell).
+- Secundario: `sudo usermod -aG sudo dev-nuevo` → `id` = `1001:1001 + 27(sudo)` ✅. Explicado -a suma sin borrar.
+- Vista: `sudo su - dev-nuevo` (su solo pide clave destino bloqueada !, sudo usa mi clave) → whoami dev-nuevo ✅ → `exit` → Erick ✅.
+- Limpieza: `sudo userdel -r dev-nuevo` (aviso mail spool not found = normal, sin buzón) → getent vacío ✅ → `sudo groupdel dev-team` → vacío ✅ → `ls /home` solo Erick ✅. Lab 05 ✅ Complete. Siguiente Lab 06.
+- Sync 2026-09-14: `mount | grep vboxsf` vacío tras reboot → `sudo mount -t vboxsf linux-vps-project /mnt/host` silencioso = éxito → verificado `mount | grep` + `ls /mnt/host` ✅. Recordatorio guardado: mount manual no sobrevive reboot, verificar siempre antes de cp. Estudiante pidió recordarlo cada sync.
+- Pausa a petición estudiante antes de secundario (usermod -aG).
+
+**Next session (target):**
+- Lab 05 práctica en VM: `whoami/id/getent`, `/etc/passwd/shadow/group`, `groupadd/useradd/usermod/id/su`, luego `userdel -r/groupdel` + evidencias en screenshots/lab-05/
+
+**Commit / push:** Pending — solo memoria Windows actualizada, falta copiar a VM ~/linux-devops-labs y push a ambos remotos.
+
+---
+
 ## 2026-09-07 — Session 08 (Lab 03 COMPLETE — Filesystem & FHS)
 
 **Phase / Lab:** Phase 4 — Linux Fundamentals · Lab 03 — Filesystem & FHS (✅ Complete)
