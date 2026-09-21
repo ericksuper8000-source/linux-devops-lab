@@ -51,11 +51,11 @@ A company hires a new developer. They need their own account on the Debian serve
 
 ### What I did
 
-2026-09-14 Session 10: inspeccionado Erick 1000, creado grupo dev-team 1001 y usuario dev-nuevo 1001, verificado id/getent, probado secundario sudo 27 con -aG, entrado con sudo su -, limpiado con userdel -r + groupdel, verificado vacío + /home solo Erick.
+2026-09-14 Session 10: inspected my own account (Erick, UID 1000), created practice group `dev-team` (GID 1001) and user `dev-nuevo` (UID 1001), verified with `id`/`getent`, tested secondary group `sudo` (GID 27) via `-aG`, entered the account with `sudo su -`, then cleaned up with `userdel -r` + `groupdel` and verified empty results plus `/home` back to only Erick.
 
 ### How it works / why
 
-0=root, 1-999 sistema, 1000+ humanos. passwd legible, shadow solo root (hashes $y$, * nunca entra, ! bloqueado). Primario dueña archivos, secundario puertas extra. -aG suma sin borrar. su pide clave destino (bloqueado), sudo su usa mi clave.
+UID 0 = root, 1–999 = system, 1000+ = humans. `passwd` is world-readable, `shadow` is root-only (hashes `$y$`, `*` = never login, `!` = locked). Primary group owns new files; secondary groups open extra doors. `-aG` appends without wiping existing groups. `su` asks for the target's password (locked account), `sudo su` uses my own password.
 
 ### Commands I used
 
@@ -80,18 +80,19 @@ A company hires a new developer. They need their own account on the Debian serve
 
 | Problem | Investigation | Solution |
 |---|---|---|
-| | | |
+| `userdel` warned "mail spool not found" | Normal on systems with no mailbox for the user | Expected, no action needed |
+| Draft notes contained shadow hashes | Session-10 safety check: repo + GitHub grepped clean (`$y$` = 0) | Draft redacted 2026-09-14; rule: never paste shadow/keys/tokens, only `id`/`getent` |
 
 ### Lessons learned / self-explanation
 
-> In your own words: who are you (UID/GID), why shadow is root-only, primary vs secondary, and why onboarding uses least privilege.
+I am Erick, UID 1000 / GID 1000 — a human account. Shadow stays root-only because it holds password hashes: leaking it gives attackers offline cracking material, while `passwd` only holds non-secret identity data. Primary group determines file ownership; secondary groups grant extra access, so forgetting `-a` in `usermod -G` silently strips existing doors. Onboarding uses least privilege: a new developer gets their own account with only needed groups, never root or someone else's account.
 
 ### Evidence
 
-- [x] Outputs saved in `screenshots/lab-05/` (Debian.txt en Desktop como borrador, limpiar antes de commit)
+- [x] Outputs saved in `screenshots/lab-05/`
 - [ ] ADR written (if a decision was made): `docs/adr/NNNN-….md`
 - [x] Session log entry appended
 - [x] Execution plan updated
-- [ ] Committed and pushed to GitHub + GitLab
+- [x] Committed and pushed to GitHub + GitLab
 
 > 🚀 **Next:** Lab 06 — Permissions & Ownership (`chmod`, `chown`, rwx, `umask`)

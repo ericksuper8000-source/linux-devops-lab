@@ -61,6 +61,47 @@ Git solves — and now there is a real, material need for it.
 
 ## Report (student fills after the session)
 
-Follow the template: what you did, commands table, problems, self-explanation, evidence.
+### What I did
+
+Installed Git in the Debian VM, configured identity to match the Windows host (`Erick_Dev` / `ericksuper80@gmail.com`), generated a dedicated ed25519 SSH key pair inside the VM, initialized the repo at `~/linux-devops-labs`, and made the first commit of the whole project documentation.
+
+### How it works / why
+
+Git is local-first: `git commit` freezes a snapshot offline, `git push` shares it later. The three states are working directory → staging area (index) → repository. `git add` moves files to staging, `git commit` freezes staging into history. Identity (`user.name`/`user.email`) is per-machine config — same values on Windows and VM keep authorship consistent. SSH keys are per-OS: the VM generated its own pair, no private key was copied from Windows. The public key is the lock shared with servers, the private key never leaves the machine.
+
+### Commands I used
+
+| Command | Why I used it |
+|---|---|
+| `sudo apt update && sudo apt install -y git` | Install Git on Debian |
+| `git config --global user.name "Erick_Dev"` | Set authorship identity (match Windows host) |
+| `git config --global user.email "ericksuper80@gmail.com"` | Set authorship email |
+| `git config --global init.defaultBranch main` | Use `main` as default branch |
+| `ssh-keygen -t ed25519 -C "ericksuper80@gmail.com"` | Generate VM-only SSH key pair |
+| `cat ~/.ssh/id_ed25519.pub` | Show public key to add to GitHub/GitLab in Lab 02 |
+| `git init` | Initialize repo in `~/linux-devops-labs` |
+| `git status` | Verify only intended files tracked |
+| `git add .` | Stage everything |
+| `git diff --cached` | Inspect staged changes before committing |
+| `git commit -m "docs: initialize linux devops labs repository"` | First commit |
+| `git log --oneline` | Confirm history |
+
+### Problems encountered
+
+| Problem | Investigation | Solution |
+|---|---|---|
+| None reported | — | — |
+
+### Lessons learned / self-explanation
+
+Version control solves history, rollback, and evidence: without it, fixing a file two weeks later is guesswork. `git add` stages, `git commit` freezes. Global config applies to all repos on that machine; per-repo config would override it. The working tree is what I edit, the index is what I staged, the repository is frozen history. SSH beats passwords because the private key never travels — the server holds the public lock.
+
+### Evidence
+
+- [ ] Screenshots saved in `screenshots/lab-01/`
+- [ ] ADR written (if a decision was made): `docs/adr/NNNN-….md`
+- [x] Session log entry appended (Session 07, 2026-08-31)
+- [x] Execution plan updated
+- [x] Committed and pushed to GitHub + GitLab (push completed in Lab 02)
 
 > 🚀 **Next:** Lab 02 — Publishing to GitHub & GitLab, where this history becomes public.

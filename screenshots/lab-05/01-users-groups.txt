@@ -16,10 +16,10 @@ Erick
 Erick@Debian:~/Desktop$ sudo userdel -r dev-nuevo
 userdel: dev-nuevo mail spool (/var/mail/dev-nuevo) not found
 Erick@Debian:~/Desktop$ getent passwd dev-nuevo
-(vacío = borrado)
+(empty = deleted)
 Erick@Debian:~/Desktop$ sudo groupdel dev-team
 Erick@Debian:~/Desktop$ getent group dev-team
-(vacío = borrado)
+(empty = deleted)
 Erick@Debian:~/Desktop$ ls /home
 Erick
-(Evidencia reconstruida 2026-09-14 desde notas de sesión — sin datos sensibles, shadow nunca se guarda aquí)
+(Reconstructed evidence 2026-09-14 from session notes — no sensitive data, shadow is never stored here)

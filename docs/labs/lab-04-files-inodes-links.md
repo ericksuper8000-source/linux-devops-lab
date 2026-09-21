@@ -105,6 +105,6 @@ A file is not just content — it's an inode with metadata (owner, permissions, 
 - [ ] ADR written (if a decision was made): `docs/adr/NNNN-….md`
 - [x] Session log entry appended
 - [x] Execution plan updated
-- [ ] Committed and pushed to GitHub + GitLab
+- [x] Committed and pushed to GitHub + GitLab
 
 > 🚀 **Next:** Lab 05 — Users & Groups

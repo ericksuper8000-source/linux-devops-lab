@@ -112,6 +112,6 @@ The Linux filesystem is not random — it follows a contract (FHS) that every di
 - [ ] ADR written (if a decision was made): `docs/adr/NNNN-….md`
 - [x] Session log entry appended
 - [x] Execution plan updated
-- [ ] Committed and pushed to GitHub + GitLab
+- [x] Committed and pushed to GitHub + GitLab
 
 > 🚀 **Next:** Lab 04 — Files, Inodes & Links

@@ -67,7 +67,7 @@ Items marked ⭐ are **optional/tentative** and never gate the core roadmap.
 - [x] I can explain what an inode is and what a hard link vs a soft link means.
 - [x] I can explain what a UID and a GID are and how Linux decides access.
 - [x] I can explain the difference between a primary and a secondary group.
-- [ ] I can explain rwx permissions for owner/group/others and how `chmod` computes them.
+- [x] I can explain rwx permissions for owner/group/others and how `chmod` computes them.
 - [ ] I can explain `umask`, SUID, SGID, sticky bit, and ACLs with a real example.
 
 ---

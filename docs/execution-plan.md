@@ -28,13 +28,13 @@ labs — it tells you exactly where the project is and what to do next.
 > **This block is updated at the end of every session.**
 
 - **Current phase:** Phase 4 — Linux Fundamentals (🔄 in progress)
-- **Current lab / task:** Lab 05 ✅ Complete 2026-09-14. Next: Lab 06 — Permissions & Ownership
+- **Current lab / task:** Lab 06 ✅ Complete 2026-09-21. Next: Lab 07 — Special Permissions & ACLs
 - **Phase 1 (VM Setup):** ✅ Complete
 - **Phase 2 (Meeting Debian):** ✅ Complete
 - **Phase 3 (Version Control):** ✅ Complete (Labs 01–02)
-- **Last completed item:** Lab 05 — Users & Groups: creado dev-team 1001 + dev-nuevo 1001, secundario sudo, su probado, limpieza userdel -r/groupdel verificada
-- **Daily recap status:** 2026-09-14 ✅ Passed (inodos + Lab 05 validado paso a paso)
-- **Next session target:** Lab 06 — Permissions & Ownership (rwx, chmod, chown, umask) + commit/push pendiente Labs 03-05
+- **Last completed item:** Lab 06 — Permissions & Ownership: decoded ls -l, 664→640→644, chgrp/chown + denied-write demo, umask 0002, test file removed
+- **Daily recap status:** 2026-09-21 ✅ Passed (usermod -a + FHS spaced repetition)
+- **Next session target:** Lab 07 — Special Permissions & ACLs (SUID, SGID, sticky, ACLs)
 - **Blockers / open questions:**
   - SSH service not running — investigate in Lab 19.
 - **Environment architecture (confirmed 2026-09-07, recordado 2026-09-14):** `Linux VPS - Project` (Windows) = project memory/
@@ -45,8 +45,8 @@ labs — it tells you exactly where the project is and what to do next.
 - **Git identity (applied in VM):** `user.name = Erick_Dev`, `user.email = ericksuper80@gmail.com`. Same identity across Windows + VM. VM SSH keys generated separately. GitHub username `ericksuper8000-source`, GitLab username `ericksuper80`. VM public key added to both platforms (`Debian VM`).
 - **Repo name (clarified 2026-09-07):** The repo on GitHub/GitLab is `linux-devops-lab` (WITHOUT trailing 's'). The local workspace folder is `~/linux-devops-labs` (WITH 's'). Remote URLs: `git@github.com:ericksuper8000-source/linux-devops-lab.git` and `git@gitlab.com:ericksuper80/linux-devops-lab.git`.
 - **Session protocol (established 2026-09-07):** Every session starts with 3 mandatory steps: (1) Academia Deploy reminder, (2) Summary of the journey, (3) One-question-at-a-time validation. Documented in AGENTS.md CRITICAL RULE.
-- **Last session:** Session 10 — 2026-09-14 Lab 05 complete + refuerzo inodos. Sync montado de nuevo tras reboot.
-- **Last commit / push:** Pending — Labs 03-05 + Session 10 necesitan commit + push a ambos remotos.
+- **Last session:** Session 11 — 2026-09-21 Lab 06 complete (permissions + ownership + umask, test file cleaned).
+- **Last commit / push:** 2026-09-14 — `docs(lab-05): complete users-groups + session 10` (8 files, +196/-18) — GitHub ✅ GitLab ✅ por estudiante. Windows memory 2026-09-21 (lab-06 + session 11) pending VM sync + push.
 
 ---
 
@@ -126,7 +126,7 @@ no modifications.**
 
 **Estimated duration:** 1–2 sessions
 
-- [ ] **Lab 00 — Meeting Your Debian Server** (`docs/labs/lab-00-meeting-debian.md`) — ✅ Complete (Blocks A–I observed, Report filled, screenshots collected)
+- [x] **Lab 00 — Meeting Your Debian Server** (`docs/labs/lab-00-meeting-debian.md`) — ✅ Complete (Blocks A–I observed, Report filled, screenshots collected)
   - [x] Identify OS, kernel, and hostname (`/etc/os-release`, `uname`, `hostnamectl`)
   - [x] Inspect hardware resources (CPU, RAM, disk)
   - [x] Identify existing users and groups (`/etc/passwd`, `/etc/group`)
@@ -137,7 +137,7 @@ no modifications.**
   - [x] Inspect the initial network configuration (`ip a`, `ip route`, `ss -tulpn`)
   - [x] Review boot logs and messages (`journalctl -b`, `journalctl -b -p err`)
   - [x] Document the laboratory + collect screenshots
-  - [ ] Pass the mentor validation (student explains back)
+  - [x] Pass the mentor validation (student explains back)
 
 **Status:** ✅ Complete (Lab 00 done; Lab 01 next in Phase 3)
 
@@ -193,17 +193,17 @@ publicly visible in real time.
   - [x] Primary vs secondary groups
   - [x] `useradd`, `usermod`, `groupadd`, `id`
   - [x] Scenario: onboarding a new developer
-- [ ] **Lab 06 — Permissions & Ownership**
-  - [ ] Why Linux needs permissions
-  - [ ] rwx model for owner / group / others
-  - [ ] `chmod`, `chown`, `chgrp`, numeric vs symbolic
-  - [ ] `umask` and default permissions
+- [x] **Lab 06 — Permissions & Ownership** ✅ 2026-09-21
+  - [x] Why Linux needs permissions
+  - [x] rwx model for owner / group / others
+  - [x] `chmod`, `chown`, `chgrp`, numeric vs symbolic
+  - [x] `umask` and default permissions
 - [ ] **Lab 07 — Special Permissions & ACLs**
   - [ ] SUID, SGID, sticky bit
   - [ ] When special bits make sense (e.g., `/tmp`)
   - [ ] ACLs with `getfacl` / `setfacl` and when they are needed
 
-**Status:** 🔄 In Progress (Labs 03-05 complete)
+**Status:** 🔄 In Progress (Labs 03-06 complete)
 
 ---
 

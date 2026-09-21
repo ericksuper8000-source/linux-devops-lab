@@ -39,7 +39,7 @@ both remotes simply receive the same history.
 - `git remote -v` shows two origins (`github`, `gitlab`); every push goes to both.
 - Repos on both platforms must stay public and in sync; the Definition of Done includes
   "pushed to both".
-- CI workflows are developed and compared on both platforms (Labs 34–35).
+- CI workflows are developed and compared on both platforms (Labs 38–39).
 
 ## If It Disappeared
 

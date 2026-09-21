@@ -74,7 +74,7 @@ The project is built to cost **$0**. All tools, cloud services, and domains are 
 | 1 | VM Environment Setup | ✅ Complete |
 | 2 | Meeting Debian | ✅ Complete |
 | 3 | Version Control & Repositories | ✅ Complete |
-| 4 | Linux Fundamentals | 🔄 In Progress (Labs 03–05 ✅) |
+| 4 | Linux Fundamentals | 🔄 In Progress (Labs 03–06 ✅) |
 | 5 | System Administration | ⬜ Pending |
 | 6 | Storage | ⬜ Pending |
 | 7 | Networking | ⬜ Pending |
@@ -105,6 +105,6 @@ The project is built to cost **$0**. All tools, cloud services, and domains are 
 1. ✅ Read [`docs/setup.md`](docs/setup.md) and prepare the VirtualBox environment.
 2. ✅ Complete **Lab 00 — Meeting Your Debian Server** ([`docs/labs/lab-00-meeting-debian.md`](docs/labs/lab-00-meeting-debian.md)).
 3. ✅ Set up Git and publish the repository (Labs 01–02) — project is public on GitHub + GitLab.
-4. 🔄 **Next:** Phase 4 — Lab 03 — Filesystem & FHS.
+4. 🔄 **Next:** Phase 4 — Lab 07 — Special Permissions & ACLs.
 
 ---

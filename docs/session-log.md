@@ -24,6 +24,43 @@ sesión de hoy o algo similar lo primero siempre es seguir el proceso como se de
 
 ---
 
+## 2026-09-21 — Session 11 (Lab 06 COMPLETE — Permissions & Ownership)
+
+**Phase / Lab:** Phase 4 — Linux Fundamentals · Lab 06 — Permissions & Ownership (✅ Complete)
+
+**Daily recap (start of day):** ✅ Passed (2 questions).
+1. `usermod -G` without `-a` replaces the whole secondary-group list — answered correctly (`-a` appends).
+2. Spaced repetition Lab 03: saving logs in `/home` breaks the FHS contract — answered correctly (standard locations let any admin find things).
+
+**Worked on (VM Debian + Debian.txt draft on host):**
+- **Lab 06 in full — permissions & ownership:**
+  - Decoded `ls -l` line by line from Debian.txt (`/etc/passwd` 644 root:root, `/etc/shadow` 640 root:shadow; home dirs). Clarified UGO = 3 classes (owner/group/others), not 3 users.
+  - Connected Lab 05 + 06: shadow readable by root + `shadow` group only; Erick got Permission denied (neither root nor in group).
+  - rwx numbers: r=4, w=2, x=1 (student initially swapped r/w, corrected). Decode trick: subtract big first (6−4=2 → rw-).
+  - Practice file `~/permiso-test.txt`: born 664 (umask) → `chmod 640` mini-shadow → `chgrp users` (column change verified) → `sudo chown root` + write attempt → **Permission denied** (creator demoted to group-read) → `sudo chown Erick` restored → `chmod o+r` symbolic → 644 = `/etc/passwd` model (predicted 644 independently after rephrased micro-steps).
+  - Why new files are born `Erick:Erick`: Debian private primary group = private by default; sharing is deliberate (`chgrp`).
+  - Real-world recipe: `chgrp dev-team` + `chmod 640` = team reads, outsiders see nothing (links Lab 05 onboarding).
+  - `umask` 0002 explained three ways incl. child version (cookie factory: mold 666, mom bites others-write → born 664). Dirs born from 777.
+  - Cleanup: `rm` test file, verified gone (server as found).
+
+**Concepts learned / reinforced:**
+- chmod = what each class can do; chown/chgrp = who fills each slot. Both halves, one system.
+- Only root reassigns owners (quotas + accountability); group changeable by owner if member.
+- umask = birth mold; nothing born too open by accident.
+
+**Commands / tools used (VM):** `ls -l`, `echo >`, `chmod 640`, `chmod o+r`, `chgrp users`, `sudo chown root/Erick`, `echo >>` (denied), `umask`, `rm`.
+
+**Errors encountered:**
+- `ls` typed in chat instead of VM (typo, discarded).
+- 644 prediction needed rephrasing into micro-steps (0+4=?); then solved independently.
+
+**Next session (target):**
+- Lab 07 — Special Permissions & ACLs (SUID, SGID, sticky bit, `getfacl`/`setfacl`).
+
+**Commit / push:** Pending — Windows memory updated (lab-06 + session 11 + plan + readmes); student syncs via `/mnt/host` → `~/linux-devops-labs`, commits + pushes to both.
+
+---
+
 ## 2026-09-14 — Session 10 (Refuerzo Lab 04 + Lab 05 iniciado)
 
 **Phase / Lab:** Phase 4 — Linux Fundamentals · Lab 05 — Users & Groups 🔄 In progress (Lab 04 ✅ + refuerzo validado hoy)
@@ -73,7 +110,7 @@ sesión de hoy o algo similar lo primero siempre es seguir el proceso como se de
 **Next session (target):**
 - Lab 05 práctica en VM: `whoami/id/getent`, `/etc/passwd/shadow/group`, `groupadd/useradd/usermod/id/su`, luego `userdel -r/groupdel` + evidencias en screenshots/lab-05/
 
-**Commit / push:** Pending — solo memoria Windows actualizada, falta copiar a VM ~/linux-devops-labs y push a ambos remotos.
+**Commit / push:** 2026-09-14 ✅ — `docs(lab-05): complete users-groups + session 10` (8 files +196/-18) — GitHub ✅ GitLab ✅. Windows y VM sincronizados. Siguiente Lab 06.
 
 ---
 

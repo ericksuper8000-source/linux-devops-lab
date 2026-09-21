@@ -2,7 +2,7 @@
 
 > **Phase:** Phase 2 — Meeting Debian
 > **Estimated duration:** 1–2 sessions
-> **Status:** ⬜ Pending
+> **Status:** ✅ Complete
 > **Prerequisites:** Phase 1 complete (VM boots, baseline snapshot exists, workspace at `~/linux-devops-labs`)
 
 ---

@@ -1,0 +1,37 @@
+Erick@Debian:~/linux-devops-labs$ ls -l /etc/passwd /etc/shadow
+-rw-r--r-- 1 root root   2146 Sep 21 11:05 /etc/passwd
+-rw-r----- 1 root shadow 1095 Sep 21 11:05 /etc/shadow
+Erick@Debian:~/linux-devops-labs$ ls -l ~
+total 36
+drwxrwxr-x 2 Erick Erick 4096 Sep 21 11:05 Desktop
+drwxr-xr-x 2 Erick Erick 4096 Feb 13  2026 Documents
+drwxr-xr-x 2 Erick Erick 4096 Feb 13  2026 Downloads
+drwxrwxr-x 8 Erick Erick 4096 Sep 14 12:13 linux-devops-labs
+drwxr-xr-x 2 Erick Erick 4096 Feb 13  2026 Music
+drwxr-xr-x 3 Erick Erick 4096 Aug 27 11:25 Pictures
+drwxr-xr-x 2 Erick Erick 4096 Feb 13  2026 Public
+drwxr-xr-x 2 Erick Erick 4096 Feb 13  2026 Templates
+drwxr-xr-x 2 Erick Erick 4096 Feb 13  2026 Videos
+
+--- Lab 06 practice (from session chat, 2026-09-21) ---
+$ echo "experimento lab 06" > ~/permiso-test.txt
+$ ls -l ~/permiso-test.txt
+-rw-rw-r-- 1 Erick Erick 19 Sep 21 13:09 /home/Erick/permiso-test.txt   (664, birth)
+$ chmod 640 ~/permiso-test.txt
+-rw-r----- 1 Erick Erick 19 Sep 21 13:09 /home/Erick/permiso-test.txt   (mini-shadow)
+$ chgrp users ~/permiso-test.txt
+-rw-r----- 1 Erick users 19 Sep 21 13:09 /home/Erick/permiso-test.txt
+$ sudo chown root ~/permiso-test.txt
+-rw-r----- 1 root users 19 Sep 21 13:09 /home/Erick/permiso-test.txt
+$ echo "sigo siendo dueño?" >> ~/permiso-test.txt
+bash: permission denied   (creator demoted to group-read)
+$ sudo chown Erick ~/permiso-test.txt
+-rw-r----- 1 Erick users 19 Sep 21 13:09 /home/Erick/permiso-test.txt   (restored)
+$ chmod o+r ~/permiso-test.txt
+-rw-r--r-- 1 Erick users 19 Sep 21 13:09 /home/Erick/permiso-test.txt   (644, mini-passwd)
+$ umask
+0002
+$ rm ~/permiso-test.txt
+$ ls ~/permiso-test.txt
+ls: cannot access: No such file or directory   (cleanup verified)
+(Reconstructed evidence 2026-09-21 from Debian.txt + session chat — no sensitive data)
